@@ -3,21 +3,27 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'docker build -t app .'
+                sh 'docker build -t jenkinstest:latest .'
             }
         }
         stage('TEST') {
             steps {
                 echo 'test'
-                sh '/bin/nc -vz localhost 22'
-                sh '/bin/nc -vz localhost 8080'
+                sh 'docker run --name jenkinstest -id -p 80:80 jenkinstest:latest'
+                sh '/bin/nc -vz localhost 80'
+            }
+	    post {
+		always{
+			sh 'docker container stop jenkinstest'
+			sh 'docker rm jenkinstest'
+                }
             }
         }
         stage('DEPLOY') {
             steps {
                 echo 'deploy'
-		sh 'docker tag app:latest app:stable'
-		sh 'docker push app:stable'
+		sh 'docker tag jenkinstest:latest jenkinstest:stable'
+		sh 'docker push shefirot/jenkinstest:stable'
             }
         }
     }
