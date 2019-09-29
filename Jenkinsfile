@@ -6,16 +6,20 @@ pipeline {
                 sh 'docker build -t app .'
             }
         }
-        /*stage('TEST') {
+        stage('TEST') {
             steps {
                 echo 'test'
+                sh '/bin/nc -vz loaclhost 22'
+                sh '/bin/nc -vz loaclhost 80'
             }
         }
         stage('DEPLOY') {
             steps {
-                echo 'deploy'
+                echo 'deploy'o
+		sh 'docker tag app:latest app:stable'
+		sh 'docker push app:stable'
             }
-        }*/
+        }
     }
     post {
 	always {
