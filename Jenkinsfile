@@ -9,8 +9,8 @@ pipeline {
         stage('TEST') {
             steps {
                 echo 'test'
-                sh '/bin/nc -vz loaclhost 22'
-                sh '/bin/nc -vz loaclhost 80'
+                sh '/bin/nc -vz localhost 22'
+                sh '/bin/nc -vz localhost 8080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080'
             }
         }
         stage('DEPLOY') {
