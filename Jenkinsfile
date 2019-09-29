@@ -23,7 +23,7 @@ pipeline {
             steps {
                 echo 'deploy'
 		sh 'docker tag jenkinstest:latest shefirot/jenkinstest:stable'
-		withCredentials([usernamePassword(credentialsId: 'dockerHubShefi', passwordVariable: 'password', usernameVariable: 'user')]) {
+		withDockerRegistry(credentialsId: 'dockerHubShefi', url: 'https://index.docker.io/v1/') {
 			sh 'docker push shefirot/jenkinstest:stable'
 		}
             }
