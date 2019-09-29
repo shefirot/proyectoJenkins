@@ -19,8 +19,10 @@ pipeline {
     }
     post {
         always {
+		echo 'Hemos llegado al final'
         }
         failure {
+		echo 'Pero a cascado'
         }
     }
 }
