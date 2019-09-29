@@ -22,7 +22,7 @@ pipeline {
         stage('DEPLOY') {
             steps {
                 echo 'deploy'
-		sh 'docker tag jenkinstest:latest jenkinstest:stable'
+		sh 'docker tag jenkinstest:latest shefirot/jenkinstest:stable'
 		sh 'docker push shefirot/jenkinstest:stable'
             }
         }
