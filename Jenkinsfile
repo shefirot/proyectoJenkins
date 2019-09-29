@@ -1,7 +1,7 @@
 pipeline {
     agent any
     stages {
-        stage('Build') {
+        stage('Docker Build') {
             steps {
                 sh 'docker build -t jenkinstest:latest .'
             }
@@ -19,7 +19,7 @@ pipeline {
                 }
             }
         }
-        stage('DEPLOY') {
+        stage('Push Registry Docker Hub') {
             steps {
                 echo 'deploy'
 		sh 'docker tag jenkinstest:latest shefirot/jenkinstest:stable'
