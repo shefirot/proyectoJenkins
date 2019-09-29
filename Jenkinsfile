@@ -15,7 +15,7 @@ pipeline {
         }
         stage('DEPLOY') {
             steps {
-                echo 'deploy'o
+                echo 'deploy'
 		sh 'docker tag app:latest app:stable'
 		sh 'docker push app:stable'
             }
