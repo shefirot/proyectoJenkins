@@ -6,14 +6,6 @@ pipeline {
                 sh 'docker build -t app .'
             }
         }
-    	post {
-        	always {
-			echo 'Hemos llegado al final'
-	        }
-	        failure {
-			echo 'Pero a cascado'
-	        }
-	}
         /*stage('TEST') {
             steps {
                 echo 'test'
@@ -24,5 +16,13 @@ pipeline {
                 echo 'deploy'
             }
         }*/
+    }
+    post {
+	always {
+		echo 'Hemos llegado al final'
+        }
+        failure {
+		echo 'Pero a cascado'
+        }
     }
 }
